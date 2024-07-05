@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!----======== CSS ======== -->
+    
+     
+     <!----===== Iconscout CSS ===== -->
+     <link rel="stylesheet" href="CSS/Request.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/css/intlTelInput.css" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script>
+   <script src="Javascript/validate.js"></script>
+   
+    <title>LMS | Loundry Request</title> 
+</head>
+<%- include('header',{
+    title:'request'
+}); -%>
+<body>
+    
+   
+    <div class="container">
+        <div id="header">
+            <h1>Laundry Management System</h1>
+            
+            <ul>
+                <li><a href="/home"><span class="sidebar-icon"><i class="fa fa-dashboard"></i></span> <span class="menu-title">Dashboard</span></a></li>
+                <li><a href="/request"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Laundry Request</span></a></li>
+                <li><a href=""><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Request Status</span></a></li>
+                <li><a href="/logout"><span class="sidebar-icon"><i class="fa-solid fa-right-from-bracket"></i></span> <span class="menu-title">LogOut</span></a></li>
+                
+              </ul>
+        </div>
+        <header>Loundry Requests</header>
+        <% if(typeof msg != 'undefined'){ %>
+            <div class="success-msg"><%= msg %></div><% }
+            if(typeof error !== 'undefined'){ %>
+            <div class="err-msg"><%= error %></div><% } %>
+        <form action="" method="post">
+
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name <span  style="color: red;">*</span></label>
+                            <input type="text" onkeypress="return checkName();" placeholder="Enter your name" name='FullName' id="fname" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Mobile Number <span  style="color: red;">*</span></label>
+                            
+                            <input type="tel" maxlength="10"   onblur="return checkMobile();" placeholder="Enter Mobile Number" name='Mobile' id="phone" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>State <span  style="color: red;">*</span></label>
+                            <!-- <input type="text" placeholder="Enter State" name='State' required> -->
+                            <select value="State" name="State" required>
+                                <option option disabled selected>Choose State:</option>
+                                <option >Andhra Pradesh</option>
+                                <option >Arunachal Pradesh</option>
+                                <option >Assam</option>
+                                <option >Bihar</option>
+                                <option >Chhattisgarh</option>
+                                <option >Goa</option>
+                                <option >Gujarat</option>
+                                <option >Haryana</option>
+                                <option >Himachal Pradesh</option>
+                                <option >Jharkhand</option>
+                                <option >Karnataka</option>
+                                <option >Kerala</option>
+                                <option >Madhya Pradesh</option>
+                                <option >Maharashtra</option>
+                                <option >Manipur</option>
+                                <option >Meghalaya</option>
+                                <option >Mizoram</option>
+                                <option >Nagaland</option>
+                                <option >Odisha</option>
+                                <option >Punjab</option>
+                                <option >Rajasthan</option>
+                                <option >Sikkim</option>
+                                <option >Tamil Nadu</option>
+                                <option >Telangana</option>
+                                <option >Tripura</option>
+                                <option >Uttar Pradesh</option>
+                                <option >Uttarakhand</option>
+                                <option >West Bengal</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>City <span  style="color: red;">*</span></label>
+                            <input type="text" onkeypress="return " placeholder="Enter City" name='City' id="city" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Pin Code <span  style="color: red;">*</span></label>
+                            <input type="text" placeholder="Enter Pin Code" onchange="return checkPin()" name='PinCode' id="pincode" required>
+                            <!-- <select required>
+                                <option disabled selected>Select gender</option>
+                                <option>Male</option>
+                                <option>Female</option>S
+                                <option>Others</option>
+                            </select> -->
+                        </div>
+
+                        <div class="input-field">
+                            <label>Address <span  style="color: red;">*</span></label>
+                            <input type="text" placeholder="Full Address" name='Address' required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="details ID"> -->
+                    
+                    <div class="details ID">
+                        <span class="title">Loundry Details </span>
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Loundry Type <span  style="color: red;">*</span></label>
+                                <select value="Laundry" name="Laundry" id="slct1">
+                                    <option selected>Choose a option</option>
+                                    <option>Dry Wash</option>
+                                    <option>Normal Wash</option>
+                                    <option>Iron</option>
+                                </select>
+                            </div>
+                            <div class="input-field" >
+                                <label>Choose from these: <span  style="color: red;">*</span></label>
+                                <select value="Cloths" name="Cloths" id="slct2">
+                                    <option selected>Choose a option</option>
+                                    <option>Coat</option>
+                                    <option>Shirt</option>
+                                </select>
+                            </div>
+                            <div class="input-field">
+                                <label>Weight of Cloths <span  style="color: red;">*</span></label>
+                                <input type="number" maxlength="1" placeholder="Weight of Cloths <10 KG" name='Weight' required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Descriptions <span  style="color: red;">*</span></label>
+                                <input type="text" placeholder="Descriptions" name='Descriptions'required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Expected Issued Date <span  style="color: red;">*</span></label>
+                                <input type="date" placeholder="Expected issued date" name='Issued' required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Expected Delivery Date</label>
+                                <input type="date" placeholder="Expected delivery date" name='Delivery' required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="submit">
+                        <span class="btnText">Submit</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                    
+                </div> 
+            </div>
+
+                </div>
+        </form>
+    </div>
+    
+ 
+
+   
+<!-- </div> --> 
+</body>
+
+</html>

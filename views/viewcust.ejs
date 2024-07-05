@@ -1,0 +1,53 @@
+<%- include('header'); -%>
+<div class="container">
+    
+    <div id="header">
+		<h1>Laundry Management System</h1>
+		<% if(typeof msg != 'undefined'){ %>
+            <div class="success-msg"><%= msg %></div><% }
+            if(typeof error !== 'undefined'){ %>
+            <div class="err-msg"><%= error %></div><% } %>
+		<ul>
+			<li><a href=""><span class="sidebar-icon"><i class="fa fa-dashboard"></i></span> <span class="menu-title">Dashboard</span></a></li>
+            <li><a href="/viewcustomer"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Display Customers</span></a></li>
+			<li><a href="/vieworders"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Display/Approve Requests</span></a></li>
+			<li><a href="/logout"><span class="sidebar-icon"><i class="fa-solid fa-right-from-bracket"></i></span> <span class="menu-title">LogOut</span></a></li>
+			
+		  </ul>
+	</div>
+	<div id="content">
+        <table class="table">
+            <thead>
+                <tr>
+        
+                    <th scope="col">User Name</th>
+                    <th scope="col">Email Id</th>
+                    <th scope="col">Mobile</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% user.forEach((u)=>{ %>
+                    <tr>
+                        <td>
+                            <%= u.name %>
+                        </td>
+                        <td>
+                            <%= u.email %>
+                        </td>
+                        <td>
+                            <%= u.mobile %>
+                        </td>
+                        <td>
+                            <a href="/detail?name=<%= u.name %>">Detail</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+	</div>
+	
+</div>
+<%- include('footer'); -%>
+
+
+

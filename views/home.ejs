@@ -1,0 +1,49 @@
+<%- include('header'); -%>
+<div class="container">
+    <div class="profile">
+        <div class="img">👦</div>
+        <h2><%= user.name %></h2>
+        <span><%= user.email %></span>
+		<span><%= user.mobile %></span>
+        <a href="/logout">Log Out</a>
+    </div>
+    <div id="header">
+		<h1>Laundry Management System</h1>
+		<% if(typeof msg != 'undefined'){ %>
+            <div class="success-msg"><%= msg %></div><% }
+            if(typeof error !== 'undefined'){ %>
+            <div class="err-msg"><%= error %></div><% } %>
+		<ul>
+			<li><a href=""><span class="sidebar-icon"><i class="fa fa-dashboard"></i></span> <span class="menu-title">Dashboard</span></a></li>
+			<li><a href="/request"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Laundry Request</span></a></li>
+			<li><a href="/mystatus?phone=<%= user.mobile %>"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Request Status</span></a></li>
+			<li><a href="/logout"><span class="sidebar-icon"><i class="fa-solid fa-right-from-bracket"></i></span> <span class="menu-title">LogOut</span></a></li>
+			
+		  </ul>
+	</div>
+	<div id="content">
+		<div class="box">
+			<h2>Total Requests</h2>
+			<p><%= total.mn3 %></p>
+		</div>
+		<div class="box">
+			<h2>Pending Requests</h2>
+			<p><%= requested.mn1 %></p>
+			
+		</div>
+		<div class="box">
+			<h2>Completed Requests</h2>
+			<p><%= pending.mn2 %></p>
+		</div>
+		<div class="box">
+			<h2>Total Customers</h2>
+            <p><%= nusers.mn %></p>
+		</div>
+		<div class="box">
+			<h2>Total Employees</h2>
+			<p>10</p>
+		</div>
+	</div>
+	
+</div>
+<%- include('footer'); -%>

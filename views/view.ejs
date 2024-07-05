@@ -1,0 +1,66 @@
+<%- include('header'); -%>
+<div class="container">
+    
+    <div id="header">
+		<h1>Laundry Management System</h1>
+		<% if(typeof msg != 'undefined'){ %>
+            <div class="success-msg"><%= msg %></div><% }
+            if(typeof error !== 'undefined'){ %>
+            <div class="err-msg"><%= error %></div><% } %>
+		<ul>
+			<li><a href=""><span class="sidebar-icon"><i class="fa fa-dashboard"></i></span> <span class="menu-title">Dashboard</span></a></li>
+            <li><a href="/viewcustomer"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Display Customers</span></a></li>
+			<li><a href="/vieworders"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Display/Approve Requests</span></a></li>
+			<li><a href="/logout"><span class="sidebar-icon"><i class="fa-solid fa-right-from-bracket"></i></span> <span class="menu-title">LogOut</span></a></li>
+			
+		  </ul>
+	</div>
+	<div id="content">
+        <table class="table">
+            <thead>
+                <tr>
+        
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Delivery Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% user.forEach((u)=>{ %>
+                    <tr>
+                        <td>
+                            <%= u.name %>
+                        </td>
+                        <td>
+                            <%= u.type %>
+                        </td>
+                        <td>
+                            <%= u.idate %>
+                        </td>
+                        <td>
+                            <%= u.ddate %>
+                        </td>
+                        <td>
+                            <% if(u.delevered === "0") 
+                            {%>
+                                <a href="/updateorder?id=<%= u.id %>" type="button" class="btn btn-danger">Incomplete</a>
+                           
+                            <%}%>
+                            <% if(u.delevered === "1") 
+                            {%>
+                                <a href="" type="button" class="btn btn-success disabled">Complete</a>
+                            <%}%>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+	</div>
+	
+</div>
+<%- include('footer'); -%>
+
+
+

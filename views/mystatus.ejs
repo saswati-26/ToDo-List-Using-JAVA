@@ -1,0 +1,60 @@
+<%- include('header',{
+    title:'Signup'
+}); -%>
+<div class="container">
+<div id="header">
+    <h1>Laundry Management System</h1>
+    <% if(typeof msg != 'undefined'){ %>
+        <div class="success-msg"><%= msg %></div><% }
+        if(typeof error !== 'undefined'){ %>
+        <div class="err-msg"><%= error %></div><% } %>
+    <ul>
+        <li><a href=""><span class="sidebar-icon"><i class="fa fa-dashboard"></i></span> <span class="menu-title">Dashboard</span></a></li>
+        <li><a href="/request"><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Laundry Request</span></a></li>
+        <li><a href=""><span class="sidebar-icon"><i class="fa-solid fa-horse"></i></span> <span class="menu-title">Request Status</span></a></li>
+        <li><a href="/logout"><span class="sidebar-icon"><i class="fa-solid fa-right-from-bracket"></i></span> <span class="menu-title">LogOut</span></a></li>
+        
+      </ul>
+</div>
+<div id="content">
+<table class="table">
+    <tr>
+
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Delivery Date</th>
+        <th scope="col">Status</th>
+    </tr>
+    <tbody>
+        <% user.forEach((u)=>{ %>
+            <tr>
+                <td>
+                    <%= u.name %>
+                </td>
+                <td>
+                    <%= u.type %>
+                </td>
+                <td>
+                    <%= u.idate %>
+                </td>
+                <td>
+                    <%= u.ddate %>
+                </td>
+                <td>
+                    <% if(u.delevered === "0") 
+                    {%>
+                        <a href="" type="button" class="btn btn-danger disabled">Incomplete</a>
+                   
+                    <%}%>
+                    <% if(u.delevered === "1") 
+                    {%>
+                        <a href="" type="button" class="btn btn-success disabled">Complete</a>
+                    <%}%>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+</div>
+</div>
